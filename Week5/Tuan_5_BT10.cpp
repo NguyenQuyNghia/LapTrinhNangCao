@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <map>
 using namespace std;
 struct Book {
     int accessionNumber;
@@ -41,22 +42,46 @@ int main()
     cout<<"6 - Issue a book"<<endl;
     cout<<"7 - Thoat"<<endl;
     int choice;
-    cin>>choice;
     do {
+        cin>>choice;
         switch (choice)
         {
             case 1:
-            for (int i=0;i<lis.size();i++)
-            {
-                lis[i].display();
-            }
-            break;
+                for (int i=0;i<lis.size();i++)
+                {
+                    lis[i].display();
+                }
+                break;
 
             case 2:
-            Book newOne;
-            newOne.getIn4();
-            lis.push_back(newOne);
-            break;
+                {
+                    Book newOne;
+                    newOne.getIn4();
+                    lis.push_back(newOne);
+                    break;
+                }
+
+            case 4:
+                {
+                    map <string,int> mp;
+                    for (int i=0;i<lis.size();i++)
+                    {
+                        mp[lis[i].bookTitle]++;
+                    }
+                    for (int i=0;i<lis.size();i++)
+                    {
+                        if (mp[lis[i].bookTitle]!=0)
+                        {
+                            cout<<lis[i].bookTitle<<" "<<mp[lis[i].bookTitle]<<endl;
+                            mp[lis[i].bookTitle]=0;
+                        }
+                    }
+                    break;
+                }
+
+            case 5:
+                cout<<"Total book: "<<lis.size()<<endl;
+                break;
         }
     }while (choice!=7);
 }
